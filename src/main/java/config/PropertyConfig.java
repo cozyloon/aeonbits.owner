@@ -6,12 +6,15 @@ import org.aeonbits.owner.Config;
 @Config.Sources({
         "system:properties",
         "classpath:config.properties",
-        "classpath:grid.properties"
+        "classpath:grid.properties",
+        "classpath:dev.properties",
+        "classpath:qa.properties"
 })
 public interface PropertyConfig extends Config {
-    String target();
+    @Key("env")
+    String env();
 
-    @Key("url.base")
+    @Key("${env}.url.base")
     String url();
 
     int timeout();
